@@ -15,7 +15,6 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, Suspense } from "react";
 
-
 const VendorApplicationsPage = () => {
   const searchParams = useSearchParams();
   const completed = searchParams.get("completed") === "true";
@@ -44,6 +43,35 @@ const VendorApplicationsPage = () => {
         </a>
       </div>
       <div className="mt-12">
+        <div>
+          <Link
+            className="flex hover:bg-zinc-50 px-4 py-4 items-center"
+            href="/vendors/applications/create"
+          >
+            <div className="bg-zinc-200/50 w-10 h-10 rounded-sm flex items-center justify-center mx-auto">
+              <Server className="w-6 h-6 text-zinc-600" />
+            </div>
+            <div className="ml-2">
+              <span className="link text-sm font-medium">BudgetPls</span>
+              <div className="text-zinc-500 text-sm -mt-1">
+                Regular Web Application
+              </div>
+            </div>
+            <div className="flex-1" />
+            <div className="text-xs text-zinc-500">
+              Client ID:{" "}
+              <span className="bg-zinc-200 px-1 py-0.5 font-mono">
+                Kf8Z0F5LaFKyERnya1HurHSmSyqXYN0h
+              </span>
+              <Copy className="ml-2 inline-block text-black" size={14} />
+            </div>
+            <div className="flex-1" />
+            <div>
+              <Ellipsis />
+            </div>
+          </Link>
+          <div className="border-b-2 border-b-zinc-200" />
+        </div>
         {completed ? (
           <div>
             <Link
@@ -74,11 +102,7 @@ const VendorApplicationsPage = () => {
             </Link>
             <div className="border-b-2 border-b-zinc-200" />
           </div>
-        ) : (
-          <div className="text-center justify-center text-xl text-zinc-500">
-            Oops, no apps here yet — why not be the first to add one?
-          </div>
-        )}
+        ) : null}
       </div>
 
       <Dialog
