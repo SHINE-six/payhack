@@ -119,6 +119,10 @@ const VendorApplicationsPage = () => {
                 <Label>Name *</Label>
                 <Input className="mt-1" defaultValue="My App" />
               </div>
+              <div className="mt-8">
+                <Label>The purpose of data</Label>
+                <Input className="mt-1" defaultValue="" />
+              </div>
               <div>
                 <ApplicationTypeSelector />
               </div>

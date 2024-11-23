@@ -12,7 +12,6 @@ import {
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -28,17 +27,17 @@ const items = [
     icon: LayoutDashboard,
   },
   {
-    title: "App Access",
+    title: "My Apps",
     url: "./app-access",
     icon: ToyBrick,
   },
   {
-    title: "Request Log",
+    title: "Access Logs",
     url: "./request-log",
     icon: ScrollText,
   },
   {
-    title: "My Account",
+    title: "My Accounts",
     url: "./my-account",
     icon: Landmark,
   },
@@ -60,10 +59,9 @@ const footerItems = [
 
 export function AppSidebar() {
   return (
-    <Sidebar>
+    <Sidebar className="pt-4">
       <SidebarContent>
-        <SidebarGroup className="mt-2" />
-        <SidebarGroupLabel>Application</SidebarGroupLabel>
+        <SidebarGroup className="mt-4" />
         <SidebarGroupContent>
           <SidebarMenu>
             {items.map((item) => (
@@ -84,10 +82,10 @@ export function AppSidebar() {
         {footerItems.map((item) => (
           <SidebarMenuItem key={item.title}>
             <SidebarMenuButton asChild>
-              <a href={item.url}>
+              <Link href={item.url}>
                 <item.icon />
                 <span>{item.title}</span>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         ))}
