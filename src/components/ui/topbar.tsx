@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const TopBar = () => {
   return (
-    <div className="top-0 fixed left-0 right-0 bg-[#181818] border-b-2 border-b-gray-300 h-[56px] flex items-center px-4">
+    <div className="top-0 fixed left-0 right-0 z-10 bg-[#181818] border-b-2 border-b-gray-300 h-[56px] flex items-center px-4">
       <Image src="/logo.png" alt="Icon" width={140} height={40} />
       <div className="flex-1" />
       <div className="flex space-x-8 items-center">

@@ -13,9 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="p-2">
-        {children}
-      </body>
+      <body className="">{children}</body>
     </html>
   );
 }

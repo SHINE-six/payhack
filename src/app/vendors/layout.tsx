@@ -11,7 +11,7 @@ export default function RootLayout({
     <SidebarProvider>
       <TopBar />
       <VendorSidebar />
-      <main className="pt-24 pl-16 pr-16">{children}</main>
+      <main className="w-full pt-24 pl-16 pr-16">{children}</main>
     </SidebarProvider>
   );
 }
