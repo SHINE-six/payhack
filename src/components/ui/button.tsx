@@ -11,7 +11,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-[#259BD3] text-primary-foreground shadow hover:bg-[#1E7FAB] flex space-x-2 items-center",
+          "bg-[#259BD3] text-primary-foreground shadow hover:bg-[#1E7FAB] flex items-center",
         destructive:
           "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:
@@ -54,7 +54,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         {...props}
       >
-        {Icon ? <Icon className="mr-2" /> : null} <span>{children}</span>
+        {Icon ? <Icon className="mr-1" /> : null} <span>{children}</span>
       </Comp>
     );
   }

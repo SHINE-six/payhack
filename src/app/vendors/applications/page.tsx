@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Plus } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 
 const VendorApplicationsPage = () => {
@@ -10,7 +10,7 @@ const VendorApplicationsPage = () => {
     <div>
       <div className="flex justify-between">
         <h1 className="text-3xl font-bold mb-2">Applications</h1>
-        <Button>Create Application</Button>
+        <Button Icon={Plus}>Create Application</Button>
       </div>
       <div className="text-zinc-500">
         Setup a mobile, web or IoT applications to use FinAuth for Open Finance
