@@ -1,5 +1,5 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar";
+import { AppSidebar } from "@/app/customer/_components/app-sidebar";
 import TopBar from "@/components/ui/topbar";
 
 export default function CutomerLayout({
@@ -11,9 +11,9 @@ export default function CutomerLayout({
     <SidebarProvider>
       <TopBar />
       <AppSidebar />
-      <main>
+      <main className="mt-[56px]">
         <SidebarTrigger />
-        {children}
+        <div className="px-4">{children}</div>
       </main>
     </SidebarProvider>
   );

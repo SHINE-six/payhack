@@ -13,7 +13,8 @@ import { Label } from "@/components/ui/label";
 import { ChevronRight, Copy, Ellipsis, Plus, Server } from "lucide-react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useState, Suspense } from "react";
+
 
 const VendorApplicationsPage = () => {
   const searchParams = useSearchParams();
@@ -123,4 +124,10 @@ const VendorApplicationsPage = () => {
   );
 };
 
-export default VendorApplicationsPage;
+const Page = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <VendorApplicationsPage />
+  </Suspense>
+);
+
+export default Page;
