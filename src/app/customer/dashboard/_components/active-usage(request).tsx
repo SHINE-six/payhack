@@ -12,44 +12,48 @@ import {
     ResponsiveContainer,
 } from 'recharts';
 
-// Second unit of time
+// minute unit of time
 const dataa = [
-    { name: '01:45:03', uv: 4000, pv: 2400, amt: 2400 },
-    { name: '01:45:04', uv: 3000, pv: 1398, amt: 2210 },
-    { name: '01:45:05', uv: 2000, pv: 9800, amt: 2290 },
-    { name: '01:45:06', uv: 2780, pv: 3908, amt: 2000 },
-    { name: '01:45:07', uv: 1890, pv: 4800, amt: 2181 },
-    { name: '01:45:08', uv: 2390, pv: 3800, amt: 2500 },
-    { name: '01:45:09', uv: 3490, pv: 4300, amt: 2100 },
-    { name: '01:45:10', uv: 4000, pv: 2400, amt: 2400 },
-    { name: '01:45:11', uv: 3000, pv: 1398, amt: 2210 },
-    { name: '01:45:12', uv: 2000, pv: 9800, amt: 2290 },
-    { name: '01:45:13', uv: 2780, pv: 3908, amt: 2000 },
-    { name: '01:45:14', uv: 1890, pv: 4800, amt: 2181 },
-    { name: '01:45:15', uv: 2390, pv: 3800, amt: 2500 },
-    { name: '01:45:16', uv: 3490, pv: 4300, amt: 2100 },
-    { name: '01:45:17', uv: 4000, pv: 2400, amt: 2400 },
-    { name: '01:45:18', uv: 3000, pv: 1398, amt: 2210 },
-    { name: '01:45:19', uv: 2000, pv: 9800, amt: 2290 },
-    { name: '01:45:20', uv: 2780, pv: 3908, amt: 2000 }
+    { time: '01:45', request: 4},
+    { time: '01:46', request: 3},
+    { time: '01:47', request: 2},
+    { time: '01:48', request: 2},
+    { time: '01:49', request: 1},
+    { time: '01:50', request: 2},
+    { time: '01:51', request: 3},
+    { time: '01:52', request: 4},
+    { time: '01:53', request: 3},
+    { time: '01:54', request: 2},
+    { time: '01:55', request: 2},
+    { time: '01:56', request: 1},
+    { time: '01:57', request: 2},
+    { time: '01:58', request: 3},
+    { time: '01:59', request: 4},
+    { time: '02:00', request: 3},
+    { time: '02:01', request: 2},
+    { time: '02:02', request: 2},
   ];
   
   const ActiveUsageRequest = () => {
     const [data, setData] = useState(dataa);
 
-    // Update data every 1 second
+    // Update data every 1 minute
     useEffect(() => {
       const interval = setInterval(() => {
         const newData = data.slice(1);  // remove the first element
         // random data push to data
+        const lastTime = newData[newData.length - 1].time;
+        const [hours, minutes] = lastTime.split(':').map(Number);
+        const newMinutes = (minutes + 1) % 60;
+        const newHours = newMinutes === 0 ? (hours + 1) % 24 : hours;
+        const newTime = `${String(newHours).padStart(2, '0')}:${String(newMinutes).padStart(2, '0')}`;
+
         newData.push({
-          name: `01:45:${new Date().getSeconds()}`,
-          uv: Math.round(newData[newData.length - 1].uv * (Math.random() + 0.5)),
-          pv: Math.round(newData[newData.length - 1].pv * (Math.random() + 0.5)),
-          amt: 2400,
+          time: newTime,
+          request: Math.round(newData[newData.length - 1].request * (Math.random() + 0.5))
         });
         setData(newData);
-      }, 1000);
+      }, 60000);
       return () => clearInterval(interval);
     }, [data]);
 
@@ -64,12 +68,11 @@ const dataa = [
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="time" />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-          <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+          <Line type="monotone" dataKey="request" stroke="#8884d8" activeDot={{ r: 8 }} />
         </LineChart>
       </ResponsiveContainer>
     );

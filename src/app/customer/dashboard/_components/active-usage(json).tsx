@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     LineChart,
     Line,
@@ -12,18 +12,51 @@ import {
     ResponsiveContainer,
 } from 'recharts';
 
-
-const data = [
-    { name: 'Jan', uv: 4000, pv: 2400, amt: 2400 },
-    { name: 'Feb', uv: 3000, pv: 1398, amt: 2210 },
-    { name: 'Mar', uv: 2000, pv: 9800, amt: 2290 },
-    { name: 'Apr', uv: 2780, pv: 3908, amt: 2000 },
-    { name: 'May', uv: 1890, pv: 4800, amt: 2181 },
-    { name: 'Jun', uv: 2390, pv: 3800, amt: 2500 },
-    { name: 'Jul', uv: 3490, pv: 4300, amt: 2100 },
+// minute unit of time
+const dataa = [
+    { time: '01:45', object: 4},
+    { time: '01:46', object: 3},
+    { time: '01:47', object: 2},
+    { time: '01:48', object: 2},
+    { time: '01:49', object: 1},
+    { time: '01:50', object: 2},
+    { time: '01:51', object: 3},
+    { time: '01:52', object: 4},
+    { time: '01:53', object: 3},
+    { time: '01:54', object: 2},
+    { time: '01:55', object: 2},
+    { time: '01:56', object: 1},
+    { time: '01:57', object: 2},
+    { time: '01:58', object: 3},
+    { time: '01:59', object: 4},
+    { time: '02:00', object: 3},
+    { time: '02:01', object: 2},
+    { time: '02:02', object: 2},
   ];
   
   const ActiveUsageJson = () => {
+    const [data, setData] = useState(dataa);
+
+    // Update data every 1 minute
+    useEffect(() => {
+      const interval = setInterval(() => {
+        const newData = data.slice(1);  // remove the first element
+        // random data push to data
+        const lastTime = newData[newData.length - 1].time;
+        const [hours, minutes] = lastTime.split(':').map(Number);
+        const newMinutes = (minutes + 1) % 60;
+        const newHours = newMinutes === 0 ? (hours + 1) % 24 : hours;
+        const newTime = `${String(newHours).padStart(2, '0')}:${String(newMinutes).padStart(2, '0')}`;
+
+        newData.push({
+          time: newTime,
+          object: Math.round(newData[newData.length - 1].object * (Math.random() + 0.5))
+        });
+        setData(newData);
+      }, 60000);
+      return () => clearInterval(interval);
+    }, [data]);
+
     return (
       <ResponsiveContainer width="100%" height={400}>
         <LineChart
@@ -35,12 +68,11 @@ const data = [
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="time" />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-          <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+          <Line type="monotone" dataKey="object" stroke="#8884d8" activeDot={{ r: 8 }} />
         </LineChart>
       </ResponsiveContainer>
     );
