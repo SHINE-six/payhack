@@ -11,7 +11,6 @@ const CustomerHomePage = () => {
     }, [router]);
 
     return null;
-    return null;
 }
 
 export default CustomerHomePage;

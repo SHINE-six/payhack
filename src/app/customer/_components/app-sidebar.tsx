@@ -23,22 +23,22 @@ import Link from "next/link";
 const items = [
   {
     title: "Dashboard",
-    url: "./dashboard",
+    url: "/customer/dashboard",
     icon: LayoutDashboard,
   },
   {
     title: "My Apps",
-    url: "./app-access",
+    url: "/customer/app-access",
     icon: ToyBrick,
   },
   {
     title: "Access Logs",
-    url: "./request-log",
+    url: "/customer/request-log",
     icon: ScrollText,
   },
   {
     title: "My Accounts",
-    url: "./my-account",
+    url: "/customer/my-account",
     icon: Landmark,
   },
 ];
