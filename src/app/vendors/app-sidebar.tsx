@@ -11,7 +11,6 @@ import {
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -25,19 +24,24 @@ const items = [
     icon: LayoutDashboard,
   },
   {
-    title: "Inbox",
+    title: "Activity",
     url: "#",
     icon: Inbox,
   },
   {
-    title: "Calendar",
+    title: "Applications",
     url: "#",
     icon: Calendar,
   },
   {
-    title: "Search",
+    title: "User Management",
     url: "#",
     icon: Search,
+  },
+  {
+    title: "Monitoring",
+    url: "#",
+    icon: Settings,
   },
   {
     title: "Settings",
@@ -46,12 +50,10 @@ const items = [
   },
 ];
 
-export function AppSidebar() {
+export function VendorSidebar() {
   return (
     <Sidebar className="top-[56px] bottom-0">
-      <SidebarContent>
-        <SidebarGroup />
-        <SidebarGroupLabel>Application</SidebarGroupLabel>
+      <SidebarContent className="">
         <SidebarGroupContent>
           <SidebarMenu>
             {items.map((item) => (
