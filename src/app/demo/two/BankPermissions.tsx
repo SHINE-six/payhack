@@ -27,7 +27,7 @@ export default function BankPermissions() {
   const [banks, setBanks] = useState<Bank[]>([
     {
       id: "1",
-      name: "MayBank",
+      name: "Maybank",
       logo: "https://play-lh.googleusercontent.com/tKvJp1TadWbY9YjwbkUC-h97-sBjn0BEb1ztaGdonVZvqqzenMy_PGyc_qGsKIxCiZk",
       permissions: {
         transactions: false,

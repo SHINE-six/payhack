@@ -1,39 +1,68 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { AuthorizationSection } from './authorization-section'
+import { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { AuthorizationSection } from "./authorization-section";
+import Image from "next/image";
 
 const popularInstitutions = [
-  { id: 'bofa', name: 'Bank of America', category: 'Banks' },
-  { id: 'allianz', name: 'Allianz Insurance', category: 'Insurance Providers' },
-  { id: 'fidelity', name: 'Fidelity Investments', category: 'Investment Firms' },
-]
+  {
+    id: "bofa",
+    name: "Maybank",
+    category: "Banks",
+    image:
+      "https://play-lh.googleusercontent.com/tKvJp1TadWbY9YjwbkUC-h97-sBjn0BEb1ztaGdonVZvqqzenMy_PGyc_qGsKIxCiZk",
+  },
+  {
+    id: "allianz",
+    name: "RHB Bank",
+    category: "Bank",
+    image: "https://ik.imagekit.io/kkbzr2uz4cp/stock/klse/rhbbank.png?tr=w-200",
+  },
+  {
+    id: "fidelity",
+    name: "CIMB Bank",
+    category: "Bank",
+    image:
+      "https://www.e-spincorp.com/wp-content/uploads/2021/07/logo-cimb-bank-600x600-1-700x700_c.png",
+  },
+];
 
 const allInstitutions = [
   ...popularInstitutions,
-  { id: 'chase', name: 'Chase Bank', category: 'Banks' },
-  { id: 'wellsfargo', name: 'Wells Fargo', category: 'Banks' },
-  { id: 'statefarm', name: 'State Farm Insurance', category: 'Insurance Providers' },
-  { id: 'vanguard', name: 'Vanguard', category: 'Investment Firms' },
-]
+  { id: "chase", name: "UOB Bank", category: "Bank" },
+  { id: "wellsfargo", name: "Bank Rakyat", category: "Bank" },
+  { id: "statefarm", name: "Standard Chartered", category: "Bank" },
+  { id: "vanguard", name: "IBKR", category: "Investment Firms" },
+];
 
 export function InstitutionSelector() {
-  const [searchTerm, setSearchTerm] = useState('')
-  const [selectedInstitution, setSelectedInstitution] = useState<string | null>(null)
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedInstitution, setSelectedInstitution] = useState<string | null>(
+    null
+  );
 
-  const filteredInstitutions = allInstitutions.filter(inst =>
+  const filteredInstitutions = allInstitutions.filter((inst) =>
     inst.name.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+  );
 
   return (
     <Card className="max-w-1/3 mx-auto">
       <CardHeader>
         <CardTitle>Select Your Institution</CardTitle>
-        <CardDescription>Choose from popular options or search for your institution</CardDescription>
+        <CardDescription>
+          Choose from popular options or search for your institution
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <Tabs defaultValue="popular">
@@ -47,11 +76,18 @@ export function InstitutionSelector() {
                 <Button
                   key={inst.id}
                   variant="outline"
-                  className="h-20 flex flex-col items-center justify-center"
+                  className="h-20 flex items-center justify-center space-x-3"
                   onClick={() => setSelectedInstitution(inst.id)}
                 >
-                  <span className="font-semibold">{inst.name}</span>
-                  <span className="text-sm text-muted-foreground">{inst.category}</span>
+                  <div className="flex space-x-2">
+                    <Image src={inst.image} width={40} height={40} alt="Logo" />
+                    <div className="text-left">
+                      <div className="font-semibold">{inst.name}</div>
+                      <div className="text-sm text-muted-foreground">
+                        {inst.category}
+                      </div>
+                    </div>
+                  </div>
                 </Button>
               ))}
             </div>
@@ -73,7 +109,9 @@ export function InstitutionSelector() {
                     onClick={() => setSelectedInstitution(inst.id)}
                   >
                     <span className="font-semibold">{inst.name}</span>
-                    <span className="text-sm text-muted-foreground">{inst.category}</span>
+                    <span className="text-sm text-muted-foreground">
+                      {inst.category}
+                    </span>
                   </Button>
                 ))}
               </div>
@@ -84,11 +122,12 @@ export function InstitutionSelector() {
       <CardFooter>
         {selectedInstitution && (
           <AuthorizationSection
-            institution={allInstitutions.find(inst => inst.id === selectedInstitution)!}
+            institution={
+              allInstitutions.find((inst) => inst.id === selectedInstitution)!
+            }
           />
         )}
       </CardFooter>
     </Card>
-  )
+  );
 }
-

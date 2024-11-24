@@ -1,19 +1,9 @@
 "use client";
 
-import {
-  Dialog,
-  DialogHeader,
-  DialogContent,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { ChevronRight, Copy, Ellipsis, Server } from "lucide-react";
-import Link from "next/link";
+import { ChevronRight, Ellipsis } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { applications } from "./dummy";
-
+import Image from "next/image";
 
 const AppAccessPage = () => {
   const router = useRouter();
@@ -44,52 +34,29 @@ const AppAccessPage = () => {
             {applications.map((app) => (
               <div
                 key={app.name}
-                className="hover:bg-zinc-50 px-4 py-4 cursor-pointer grid grid-cols-[2fr,1fr,1fr,1fr] items-center"
-                onClick={() => router.push(`/customer/app-access/${(app.name).toLowerCase()}`)}
+                className="hover:bg-zinc-50 px-4 py-4 cursor-pointer grid grid-cols-[2fr,1fr,1fr,1fr] items-center border-b-2 border-b-zinc-200"
+                onClick={() =>
+                  router.push(`/customer/app-access/${app.name.toLowerCase()}`)
+                }
               >
-                <div className="flex">
-                  <div className="bg-zinc-200/50 w-10 h-10 rounded-sm flex items-center justify-center">
-                    <Server className="w-6 h-6 text-zinc-600" />
-                  </div>
+                <div className="flex items-center">
+                  <Image src={app.image} width={40} height={40} alt="Logo" />
                   <div className="ml-2">
                     <span className="link text-sm font-medium">{app.name}</span>
-                    <div className="text-zinc-500 text-sm -mt-1">
-                      {app.type}
-                    </div>
                   </div>
                 </div>
-                <div>Latest Request: <span className="text-zinc-500">{app.latestRequest}</span></div>
-                <div>Given Access on: <span className="text-zinc-500">{app.givenAccessOn}</span></div>
+                <div>
+                  <span className="text-zinc-500">{app.latestRequest}</span>
+                </div>
+                <div>
+                  <span className="text-zinc-500">{app.givenAccessOn}</span>
+                </div>
                 <div className="justify-self-end">
                   <Ellipsis />
                 </div>
               </div>
             ))}
           </div>
-          {/* <div
-            className="hover:bg-zinc-50 px-4 py-4 cursor-pointer grid grid-cols-[2fr,1fr,1fr,1fr] items-center"
-            onClick={() => router.push("/customer/app-access/create")}
-          >
-            <div className="flex">
-              <div className="bg-zinc-200/50 w-10 h-10 rounded-sm flex items-center justify-center">
-                <Server className="w-6 h-6 text-zinc-600" />
-              </div>
-              <div className="ml-2">
-                <span className="link text-sm font-medium">Budgetly</span>
-                <div className="text-zinc-500 text-sm -mt-1">
-                  Regular Web Application
-                </div>
-              </div>
-            </div>
-            
-            <div>Latest Request: <span className="text-zinc-500">2 minutes ago</span></div>
-            <div>Given Access on: <span className="text-zinc-500">12/12/2021</span></div>
-            
-            <div className="justify-self-end">
-              <Ellipsis />
-            </div>
-          </div> */}
-          <div className="border-b-2 border-b-zinc-200" />
         </div>
       </div>
     </div>

@@ -5,7 +5,9 @@ import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { API } from "../../dummy";
-
+import { MessageCircleQuestion } from "lucide-react";
+import { Tooltip, TooltipProvider } from "@/components/ui/tooltip";
+import { TooltipContent, TooltipTrigger } from "@radix-ui/react-tooltip";
 
 export default function APIAuthorization({ apis }: { apis: API[] }) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -39,9 +41,25 @@ export default function APIAuthorization({ apis }: { apis: API[] }) {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-sm">
               <div className="space-y-1">
                 <h3 className="font-medium">
-                  <a href="#" className="link">
-                    {api.name}
-                  </a>
+                  <div className="flex space-x-2">
+                    <a href="#" className="link">
+                      {api.name}
+                    </a>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipContent>
+                          <div className="bg-black text-white z-[100] relative px-2 py-1">
+                            Budgetly can read all your personal account info
+                            like email, name, and profile image, click to learn
+                            more
+                          </div>
+                        </TooltipContent>
+                        <TooltipTrigger asChild>
+                          <MessageCircleQuestion className="h-4 w-4 text-blue-500 cursor-pointer" />
+                        </TooltipTrigger>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </div>
                 </h3>
                 <p className="text-xs text-zinc-500">
                   API Identifier:{" "}
@@ -56,7 +74,10 @@ export default function APIAuthorization({ apis }: { apis: API[] }) {
                   checked={api.authorized}
                   className="cursor-not-allowed"
                 />
-                <Label className="w-24 cursor-not-allowed" htmlFor={`api-auth-${api.id}`}>
+                <Label
+                  className="w-24 cursor-not-allowed"
+                  htmlFor={`api-auth-${api.id}`}
+                >
                   {api.authorized ? "Requesting" : "Not requesting"}
                 </Label>
               </div>

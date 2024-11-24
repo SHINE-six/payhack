@@ -2,6 +2,12 @@
 import AndroidNotification from "@/app/demo/two/AndroidNotification";
 import BankPermissions from "@/app/demo/two/BankPermissions";
 import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { MessageCircleQuestionIcon } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -50,15 +56,46 @@ const Integration = () => {
             height="120"
           />
           <div className="mt-2">
-            Allowing <span className="font-semibold">Budgetly</span> to access
-            your financial data:
+            <div>
+              Allowing <span className="font-semibold">Budgetly</span> to access
+              your financial data
+            </div>
+            <div className="text-zinc-500 text-sm  mt-1">
+              <span>Budgetly is a FinAuth </span>
+              <Image
+                src="/central.png"
+                alt="logo"
+                className="inline"
+                height={20}
+                width={20}
+              />{" "}
+              <span>
+                Certified{" "}
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipContent>
+                      <div className="bg-black text-white z-[100] relative px-2 py-1">
+                        Budgetly will be compliant with most of our security
+                        <br></br>
+                        rules to ensure that your data is safe and secure.
+                      </div>
+                    </TooltipContent>
+                    <TooltipTrigger asChild>
+                      <b className="text-black underline">grade B</b>
+                    </TooltipTrigger>
+                  </Tooltip>
+                </TooltipProvider>{" "}
+                vendor.{" "}
+              </span>
+              <span className="link">What does this mean?</span>
+            </div>
           </div>
         </div>
         {!completed ? (
           <>
             <div>
               <div className="mb-4 text-xl font-semibold">
-                {"Let's connect Gero"}
+                {"Let's connect Budgetly"}
               </div>
             </div>
             <div>The following permissions are required</div>

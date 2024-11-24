@@ -8,6 +8,9 @@ export default function Home() {
 
   return (
     <div className="flex w-screen h-screen justify-center items-center gap-x-8">
+      <Button size={"lg"} onClick={() => router.push("/demo/one")}>
+        Demo
+      </Button>
       <Button size={"lg"} onClick={() => router.push("/vendors")}>
         Vendor
       </Button>
