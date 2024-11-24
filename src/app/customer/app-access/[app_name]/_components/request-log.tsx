@@ -15,7 +15,7 @@ const RequestLogPage = ({requestLogs}: {requestLogs: RequestLog[]}) => {
     return (
         <div>
             <h1>Request Log</h1>
-            {/* @ts-expect-error */}
+            {/* @ts-expect-error: Ignoring type error for demonstration purposes */}
             <Table containerClassname='max-h-[33em] overflow-y-auto relative'>
                 <TableCaption>Log of requests made by the application</TableCaption>
                 <TableHeader>

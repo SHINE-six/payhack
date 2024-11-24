@@ -3,11 +3,11 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 
 const Table = React.forwardRef(
-  // @ts-expect-error
+  // @ts-expect-error: Ignoring type error for demonstration purposes
   ({ className, containerClassname, ...props }, ref) => (
     <div className={cn("relative w-full", containerClassname)}>
       <table
-      // @ts-expect-error
+      // @ts-expect-error: Ignoring type error for demonstration purposes
         ref={ref}
         className={cn("w-full caption-bottom text-sm", className)}
         {...props}
